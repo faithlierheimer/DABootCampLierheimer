@@ -11,9 +11,10 @@ Dim lRow As Long
 Dim currentTicker As String
 Dim reportingRowIndex As Long
 Dim tickerVolume As Double
-Dim startValue As Long
-Dim endValue As Long
+Dim startValue As Double
+Dim endValue As Double
 Dim diff As Long
+Dim percentChange As Double
 
 'Define initial variables after declaring them
 lRow = Cells(Rows.Count, 1).End(xlUp).Row
@@ -21,11 +22,10 @@ tickerVolume = 0
 reportingRowIndex = 2
 
 'Label the headers of each cell where I want the summary results to go
-Cells(1, 11).Value = "Year Open"
-Cells(1, 12).Value = "Year Close"
-Cells(1, 13).Value = "Yearly Change"
-Cells(1, 14).Value = "Total Volume"
-Cells(1, 15).Value = "Percent Change"
+Cells(1, 10).Value = "Ticker Value"
+Cells(1, 11).Value = "Yearly Change"
+Cells(1, 12).Value = "Percent Change"
+Cells(1, 13).Value = "Total Stock Volume"
 
 'Begin for loop to analyze summary data, start in row 2 to last row
 For i = 2 To lRow
@@ -58,18 +58,25 @@ For i = 2 To lRow
         
         'Put ticker label in appropriate column
         Cells(reportingRowIndex, 10).Value = currentTicker
-        
-        'start and endValue give us baseline variables to calculate changes
-        Cells(reportingRowIndex, 11).Value = startValue
-        Cells(reportingRowIndex, 12).Value = endValue
-        
+       
         'endValue - startValue = yearly change
-        Cells(reportingRowIndex, 13).Value = endValue - startValue
-        Cells(reportingRowIndex, 14).Value = currentVolume
-        
+        Cells(reportingRowIndex, 11).Value = endValue - startValue
+            'Color conditional formatting for yearly change--green for positive, red for negative
+                If Cells(reportingRowIndex, 11).Value < 0 Then
+                    Cells(reportingRowIndex, 11).Interior.Color = vbRed
+                ElseIf Cells(reportingRowIndex, 11).Value > 0 Then
+                    Cells(reportingRowIndex, 11).Interior.Color = vbGreen
+                End If
+                
         'Calculate percent change for currentTicker
-        Cells(reportingRowIndex, 15).Value = (endValue - startValue) / startValue
+        percentChange = (endValue - startValue) / startValue
+        Cells(reportingRowIndex, 12).Value = percentChange
+        Cells(reportingRowIndex, 12).NumberFormat = "0.00%"
         
+        Cells(reportingRowIndex, 13).Value = currentVolume
+        Cells(reportingRowIndex, 13).NumberFormat = "000,000"
+        
+      
         'Move the reportingRowIndex down one row for the next ticker
         reportingRowIndex = reportingRowIndex + 1
         
