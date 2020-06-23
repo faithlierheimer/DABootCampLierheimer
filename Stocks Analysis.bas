@@ -1,4 +1,4 @@
-Attribute VB_Name = "Module2"
+Attribute VB_Name = "Module3"
 Sub stocksummary()
 'Start with declaring needed variables
 'lRow = define last row of range dynamically so it can apply to any dataset
@@ -73,6 +73,16 @@ For i = 2 To lRow
         Cells(reportingRowIndex, 12).Value = percentChange
         Cells(reportingRowIndex, 12).NumberFormat = "0.00%"
         
+        'Max/min percent change??
+        Dim max_min_rng As Range
+        Dim max As Double
+        Dim min As Double
+        Set max_min_rng = ActiveSheet.Range("L:L")
+        max = Application.WorksheetFunction.max(max_min_rng)
+        Cells(2, 14).NumberFormat = "0.00%"
+        Cells(2, 14).Value = max
+        
+        'Report out total stock volume for currentTicker & format appropriately
         Cells(reportingRowIndex, 13).Value = currentVolume
         Cells(reportingRowIndex, 13).NumberFormat = "000,000"
         
@@ -93,3 +103,4 @@ Next i
 
 
 End Sub
+
