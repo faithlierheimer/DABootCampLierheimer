@@ -43,4 +43,34 @@ correyPercentage = (correyVotes/votesTotal)*100
 liPercentage = (liVotes/votesTotal)*100
 #print(liPercentage)
 toolPercentage = (toolVotes/votesTotal)*100
-print(toolPercentage)
+#print(toolPercentage)
+
+#Compile all percentages into list and select max 
+voteTotals = [khanVotes, correyVotes, liVotes, toolVotes]
+winner = max(voteTotals)
+
+#Make dictionary of candidates and vote totals to access winer
+candidatesAndVotes = {
+    khanVotes: "Khan",
+    correyVotes: "Correy",
+    liVotes: "Li",
+    toolVotes: "O'Tooley"
+}
+#Print winner Name
+winnerName = candidatesAndVotes.get(winner)
+
+#Save path to text output file as variable
+pollResults = r"C:\Users\flier\DABootCampLierheimer\Python-challenge\pyPollOutput.txt"
+
+#Save/format results in 'text' variable
+text = ["Election Results: \n", "Total votes cast: ", str(votesTotal), 
+"\n Khan: ", str(khanPercentage), "%", "  (", str(khanVotes), ") ",
+"\n Correy: ", str(correyPercentage), "%", "  (", str(correyVotes), ") ",
+"\n Li: ", str(liPercentage), "%", "  (", str(liVotes), ") ",
+"\n O'Tooley: ", str(toolPercentage), "%", "  (", str(toolVotes), ") ",
+"\n Winner: ", winnerName
+]
+#Write contents of poll results file
+write_output = open(pollResults, "r+")
+write_output.writelines(text)
+write_output.close()
