@@ -58,17 +58,18 @@ candidatesAndVotes = {
 }
 #Print winner Name
 winnerName = candidatesAndVotes.get(winner)
-
+winName = "Khan"
 #Save path to text output file as variable
 pollResults = r"C:\Users\flier\DABootCampLierheimer\Python-challenge\pyPollOutput.txt"
 
 #Save/format results in 'text' variable
-text = ["Election Results: \n", "Total votes cast: ", str(votesTotal), 
-"\n Khan: ", str(khanPercentage), "%", "  (", str(khanVotes), ") ",
-"\n Correy: ", str(correyPercentage), "%", "  (", str(correyVotes), ") ",
-"\n Li: ", str(liPercentage), "%", "  (", str(liVotes), ") ",
-"\n O'Tooley: ", str(toolPercentage), "%", "  (", str(toolVotes), ") ",
-"\n Winner: ", winnerName
+text = [f"Election Results:" 
+f"\n Total votes cast: {votesTotal} " 
+f"\n Khan: {khanPercentage} %  ({khanVotes}) "
+f"\n Correy: {correyPercentage} %  ({correyVotes}) "
+f"\n Li: {liPercentage} %  ({liVotes})"
+f"\n O'Tooley: {toolPercentage} %  ({toolVotes}) "
+f"\n Winner: {winName}"
 ]
 #Write contents of poll results file
 write_output = open(pollResults, "r+")
