@@ -32,9 +32,11 @@ minChMonthStr = minChangeMonth.to_string()
 maxChMonthStr = maxChangeMonth.to_string()
 
 #Compile results of analysis into a list of strings called "contents" to later write to text file
-contents = ["Financial Report: \n The total number of months recorded was: ", str(monthCount), "\n The gross total of all the transactions was: $", str(totalTransactions),
-"\n The average change over the whole period of 86 months was: $", str(averageChange), "\n The month with the greatest gain was: \n", str(maxChMonthStr), 
-"\n The month with the greatest loss was: \n", str(minChMonthStr)]
+contents = [f"Financial Report: \n The total number of months recorded was: {monthCount}."
+f"\n The gross total of all the transactions was:$ {totalTransactions}"
+f"\n The average change over the whole period of 86 months was: $ {averageChange} ."
+f"\n The month with the greatest gain was: \n {maxChMonthStr} ."
+f"\n The month with the greatest loss was: \n {minChMonthStr}"]
 
 #Compile all metrics into one text file report
     #First, save path to file in "output" variable
