@@ -1,7 +1,7 @@
 import pandas as pd 
 
 #Import and read CSV, inspect first 5 rows. 
-poll = pd.read_csv(r'C:\Users\flier\DABootCampLierheimer\Python-challenge\election_data.csv')
+poll = pd.read_csv(r'C:\Users\flier\DABootCampLierheimer\Python-challenge\Resources\election_data.csv')
 
 #print(poll.head()) [Commenting out print rows after I use them for sake of code cleanliness]
 #Change Column names for ease of use 
@@ -49,7 +49,7 @@ toolPercentage = (toolVotes/votesTotal)*100
 voteTotals = [khanVotes, correyVotes, liVotes, toolVotes]
 winner = max(voteTotals)
 
-#Make dictionary of candidates and vote totals to access winer
+#Make dictionary of candidates and vote totals to access winner
 candidatesAndVotes = {
     khanVotes: "Khan",
     correyVotes: "Correy",
@@ -58,9 +58,9 @@ candidatesAndVotes = {
 }
 #Print winner Name
 winnerName = candidatesAndVotes.get(winner)
-winName = "Khan"
+
 #Save path to text output file as variable
-pollResults = r"C:\Users\flier\DABootCampLierheimer\Python-challenge\pyPollOutput.txt"
+pollResults = r"C:\Users\flier\DABootCampLierheimer\Python-challenge\Analysis\pyPollOutput.txt"
 
 #Save/format results in 'text' variable
 text = [f"Election Results:" 
@@ -68,9 +68,8 @@ f"\n Total votes cast: {votesTotal} "
 f"\n Khan: {khanPercentage} %  ({khanVotes}) "
 f"\n Correy: {correyPercentage} %  ({correyVotes}) "
 f"\n Li: {liPercentage} %  ({liVotes})"
-f"\n O'Tooley: {toolPercentage} %  ({toolVotes}) "
-f"\n Winner: {winName}"
-]
+f"\n O'Tooley: {toolPercentage} %  ({toolVotes}) ",
+"\n Winner: ", winnerName]
 #Write contents of poll results file
 write_output = open(pollResults, "r+")
 write_output.writelines(text)

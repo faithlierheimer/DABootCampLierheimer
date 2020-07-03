@@ -4,4 +4,4 @@ Election Results:
  Correy: 19.999994319797125 %  (704200) 
  Li: 13.999996023857989 %  (492940)
  O'Tooley: 2.999999147969569 %  (105630) 
- Winner: KhanerNamen
+ Winner: Khanameamen

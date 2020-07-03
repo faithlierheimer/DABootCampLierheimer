@@ -1,6 +1,6 @@
 import pandas as pd
 #Import/read CSV for analysis
-budget = pd.read_csv(r"C:\Users\flier\DABootCampLierheimer\Python-challenge\budget_data.csv")
+budget = pd.read_csv(r"C:\Users\flier\DABootCampLierheimer\Python-challenge\Resources\budget_data.csv")
 
 #rename columns for ease of use
 budget.columns = ['date', 'pandl']
@@ -40,7 +40,7 @@ f"\n The month with the greatest loss was: \n {minChMonthStr}"]
 
 #Compile all metrics into one text file report
     #First, save path to file in "output" variable
-output = r'C:\Users\flier\DABootCampLierheimer\Python-challenge\pybankoutput.txt'
+output = r'C:\Users\flier\DABootCampLierheimer\Python-challenge\Analysis\pybankoutput.txt'
 
 #Writing file-open in read and write mode, write contents as a list of strings, then close it. 
 write_output = open(output, "r+")
