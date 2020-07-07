@@ -1,10 +1,8 @@
 Financial Report: 
  The total number of months recorded was: 86.
  The gross total of all the transactions was:$ 38382578
- The average change over the whole period of 86 months was: $ 446309.0465116279 .
+ The average change over the whole period of 86 months was: $ 446309.05 .
  The month with the greatest gain was: 
-         date    pandl
-25  Feb-2012  1170593 .
+ Feb-2012 at $1926159 .
  The month with the greatest loss was: 
-         date    pandl
-44  Sep-2013 -1196225
+ Sep-2013 at $-2196167

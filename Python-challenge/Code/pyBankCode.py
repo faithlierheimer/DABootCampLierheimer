@@ -1,50 +1,61 @@
-import pandas as pd
-#Import/read CSV for analysis
-budget = pd.read_csv(r"C:\Users\flier\DABootCampLierheimer\Python-challenge\Resources\budget_data.csv")
+#Import dependencies 
+import os
+import csv
+#Empty lists 
+months = []
+moneyGross = []
+profitMonth = []
+#Set path to CSV 
+csvpath = os.path.join(r"C:\Users\flier\DABootCampLierheimer\Python-challenge\Resources\budget_data.csv")
+#Open CSV
+with open(csvpath) as csvfile: 
+    csvreader = csv.reader(csvfile, delimiter = ",")
+    header = next(csvfile)
+    for row in csvreader:
+        month = row[0]
+        months.append(month)
+        #Count number of months in report, add to txt later
+        monthcount = len(months)
+        #Add up gross $$$$
+        money = row[1]
+        moneyGross.append(money)
+    #Change moneyGross to integers and calculate sum
+    moneyGross = [int(i) for i in moneyGross]
+    #Final variable to print in CSV 
+    moneyGrossSum = sum(moneyGross)
+    #Calculate average change over total budget period
+    AverageMoney = moneyGrossSum/len(moneyGross)
+    AverageMoney = round(AverageMoney, 2)
+    #Find max change in profit
+    ##Calculate changes in profit first
+    for i in range(0, len(moneyGross)-1):
+        profitMonth.append(moneyGross[i + 1] - moneyGross[i])
+    #Find max profit change
+    profitMax = max(profitMonth)
+    #Find index of max profit change to find month
+    maxIndex = profitMonth.index(profitMax)
+    #Use index of max profit change to find month (adding one to compensate for offset indices in for loop line 31)
+    maxMonth = months[maxIndex + 1]
+    #Find min profit change
+    profitMin = min(profitMonth)
+    #Find index of max profit change to find month 
+    minIndex = profitMonth.index(profitMin)
+    #Use index of min profit change to find month (adding one to compensate for offset indices in for loop line 31)
+    minMonth = months[minIndex + 1]
+    #Begin to write text file 
+    contents = [f"Financial Report: \n The total number of months recorded was: {monthcount}."
+    f"\n The gross total of all the transactions was:$ {moneyGrossSum}"
+    f"\n The average change over the whole period of 86 months was: $ {AverageMoney} ."
+    f"\n The month with the greatest gain was: \n {maxMonth} at ${profitMax} ."
+    f"\n The month with the greatest loss was: \n {minMonth} at ${profitMin}"]
 
-#rename columns for ease of use
-budget.columns = ['date', 'pandl']
+    #Define output file path
+    output = r'C:\Users\flier\DABootCampLierheimer\Python-challenge\Analysis\pyBankAnalysis.txt'
+    #Write file-open in read and write mode
+    write_output = open(output, "r+")
+    write_output.writelines(contents)
+    write_output.close()
 
-#count number of months, save to variable
-monthCount = budget.date.count()
+        
+        
 
-#Sum total transactions, save to variable
-totalTransactions = budget.pandl.sum()
-
-#average total change over budget period, save to variable
-averageChange = budget.pandl.mean()
-
-#max increase over whole period, save to variable
-maxChangeAmt = budget.pandl.max()
-
-#use maxChangeAmt to find the month with the max change, save to variable
-maxChangeMonth = budget[(budget.pandl == maxChangeAmt)]
-
-#max decrease over whole period, save to variable
-minChangeAmt = budget.pandl.min()
-
-#useminChangeAmt to find month with min change, save to variable
-minChangeMonth = budget[(budget.pandl == minChangeAmt)]
-
-#Change minimum and maximum changes over period from DataFrames to strings
-minChMonthStr = minChangeMonth.to_string()
-
-maxChMonthStr = maxChangeMonth.to_string()
-
-#Compile results of analysis into a list of strings called "contents" to later write to text file
-contents = [f"Financial Report: \n The total number of months recorded was: {monthCount}."
-f"\n The gross total of all the transactions was:$ {totalTransactions}"
-f"\n The average change over the whole period of 86 months was: $ {averageChange} ."
-f"\n The month with the greatest gain was: \n {maxChMonthStr} ."
-f"\n The month with the greatest loss was: \n {minChMonthStr}"]
-
-#Compile all metrics into one text file report
-    #First, save path to file in "output" variable
-output = r'C:\Users\flier\DABootCampLierheimer\Python-challenge\Analysis\pybankoutput.txt'
-
-#Writing file-open in read and write mode, write contents as a list of strings, then close it. 
-write_output = open(output, "r+")
-write_output.writelines(contents)
-write_output.close()
-
-#Analysis complete! Output is in file called "pybankoutput.txt"
