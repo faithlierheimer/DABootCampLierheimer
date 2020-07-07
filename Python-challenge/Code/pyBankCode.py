@@ -23,13 +23,14 @@ with open(csvpath) as csvfile:
     moneyGross = [int(i) for i in moneyGross]
     #Final variable to print in CSV 
     moneyGrossSum = sum(moneyGross)
-    #Calculate average change over total budget period
-    AverageMoney = moneyGrossSum/len(moneyGross)
-    AverageMoney = round(AverageMoney, 2)
     #Find max change in profit
     ##Calculate changes in profit first
     for i in range(0, len(moneyGross)-1):
         profitMonth.append(moneyGross[i + 1] - moneyGross[i])
+    #Calculate average of changes in profit
+    profitSum = sum(profitMonth)
+    profitAvg = profitSum/len(profitMonth)
+    profitAvg = round(profitAvg, 2)
     #Find max profit change
     profitMax = max(profitMonth)
     #Find index of max profit change to find month
@@ -45,7 +46,7 @@ with open(csvpath) as csvfile:
     #Begin to write text file 
     contents = [f"Financial Report: \n The total number of months recorded was: {monthcount}."
     f"\n The gross total of all the transactions was:$ {moneyGrossSum}"
-    f"\n The average change over the whole period of 86 months was: $ {AverageMoney} ."
+    f"\n The average change over the whole period of 86 months was: $ {profitAvg} ."
     f"\n The month with the greatest gain was: \n {maxMonth} at ${profitMax} ."
     f"\n The month with the greatest loss was: \n {minMonth} at ${profitMin}"]
 

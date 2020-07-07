@@ -1,8 +1,8 @@
 Financial Report: 
  The total number of months recorded was: 86.
  The gross total of all the transactions was:$ 38382578
- The average change over the whole period of 86 months was: $ 446309.05 .
+ The average change over the whole period of 86 months was: $ -2315.12 .
  The month with the greatest gain was: 
  Feb-2012 at $1926159 .
  The month with the greatest loss was: 
- Sep-2013 at $-2196167
+ Sep-2013 at $-21961677
