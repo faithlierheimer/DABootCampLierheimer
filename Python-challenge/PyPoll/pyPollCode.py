@@ -10,7 +10,7 @@ correyVotes = []
 liVotes = []
 toolVotes = []
 #Import/read CSV
-csvpath = os.path.join(r"C:\Users\flier\DABootCampLierheimer\Python-challenge\Resources\election_data.csv")
+csvpath = os.path.join("election_data.csv")
 with open(csvpath) as csvfile:
     csvreader = csv.reader(csvfile, delimiter = ",")
     header = next(csvfile)
@@ -67,18 +67,17 @@ with open(csvpath) as csvfile:
     #Compile all results into text file
 
     #Save path to text output file as variable
-    pollResults = r"C:\Users\flier\DABootCampLierheimer\Python-challenge\Analysis\pyPollAnalysis.txt"
+    pollResults = os.path.join("makeFile.txt")
 
     #Save/format results in 'text' variable
-    text = [f"Election Results:" 
+    text = (f"Election Results:" 
     f"\n Total votes cast: {votecount} " 
     f"\n Khan: {khanPercent} %  ({khanVoteCount}) "
     f"\n Correy: {correyPercent} %  ({correyVoteCount}) "
     f"\n Li: {liPercent} %  ({liVoteCount})"
     f"\n O'Tooley: {toolPercent} %  ({toolVoteCount}) "
-    f"\n Winner: {winnerName}"]
+    f"\n Winner: {winnerName}")
 
     #Write contents of poll results file
-    write_output = open(pollResults, "r+")
-    write_output.writelines(text)
-    write_output.close()
+    with open(pollResults, "w") as txt_file:
+        txt_file.write(text)
